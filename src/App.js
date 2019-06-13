@@ -37,6 +37,7 @@ class App extends Component{
       });
     }
     
+
     
     shortin = ()=>{    
       unirest.post("https://url-shortener-service.p.rapidapi.com/shorten")
@@ -44,9 +45,11 @@ class App extends Component{
       .header("X-RapidAPI-Key", "f0ddd759fbmsh5d4bf8a8fa77134p149d1cjsn1774ce8ca17d")
       .header("Content-Type", "application/x-www-form-urlencoded")
       .send(this.state.long_url)
-      .end(function (result) {
-        console.log(result.body.result_url);
-        this.setState({short_url: result.body.result_url})
+      .end( (result) => {
+        this.setState({
+          short_url : result.body.result_url
+        })
+                
       });
     }
 

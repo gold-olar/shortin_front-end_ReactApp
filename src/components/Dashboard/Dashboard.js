@@ -6,7 +6,9 @@ import { Button, Container, Card, Jumbotron, Form, FormGroup, Input } from 'reac
 
 
 const Dashboard = ({ shortin, InputChange, short_link, long_link }) => {
-	const displayed_long_link = long_link.slice(4)
+	const date = new Date().toDateString();
+	const displayed_long_link = long_link.slice(4);
+	
 	return (
 		<div>
 			<Jumbotron className='dashboard_header'>
@@ -32,7 +34,7 @@ const Dashboard = ({ shortin, InputChange, short_link, long_link }) => {
 							<h5 className="long_link"> {displayed_long_link} </h5>
 
 							<p className="date">
-								May 2019
+								{date}
 			</p>
 
 						</Card>
