@@ -1,0 +1,9 @@
+.logo{
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+    font-weight: 900;
+    font-size: 120%;
+}
+.NavLink{
+	cursor: pointer;
+}

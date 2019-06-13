@@ -1,0 +1,33 @@
+.templateForm{
+	width: 50%;
+	justify-content: center;
+	/*border: 2px solid black;*/
+	padding: 1%;
+	margin-top: 3%;
+	margin-left: auto;
+	margin-right: auto;
+	
+
+}
+h2{
+	text-align: center;
+	padding-bottom: 10px;
+	font-weight: 800;
+}
+h2:after{
+	display: block;
+	height: 2px;
+	background-color: #343a40;
+	width:100px;
+	content:" ";
+	margin: 0 auto;
+	margin-top: 30px;
+	font-weight: bolder;
+}
+label{
+	font-weight: 500px;
+}
+.signin_card{
+	padding: 2%;
+	border-radius: 25px;
+}
