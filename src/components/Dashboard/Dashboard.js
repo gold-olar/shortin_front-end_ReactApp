@@ -30,7 +30,7 @@ const Dashboard = ({ shortin, InputChange, short_link, long_link }) => {
 
 					<Container className="cont">
 						<Card className="cards">
-							<a className="short_link" href="#" > {short_link} </a>
+							<a className="short_link"  href={short_link} > {short_link} </a>
 							<h5 className="long_link"> {displayed_long_link} </h5>
 
 							<p className="date">

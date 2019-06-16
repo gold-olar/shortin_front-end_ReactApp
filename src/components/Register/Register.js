@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, FormGroup, Label, Input} from 'reactstrap';
+import { Card,  FormGroup, Label, Input} from 'reactstrap';
 // import './Register.css'
 
 const Register = () =>{
@@ -30,7 +30,9 @@ const Register = () =>{
 			          <Input type="password" name="password2" id="password2" placeholder="Confirm Password" />
 			        </FormGroup>
 			       
-			        <Button>Register </Button>
+			        <FormGroup>
+			          <Input className='btn-secondary' type="submit" value="Register" />
+			        </FormGroup>
 			      </div>
 		      </div>
 		      </Card>

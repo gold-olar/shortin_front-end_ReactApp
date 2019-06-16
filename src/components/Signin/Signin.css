@@ -30,4 +30,5 @@ label{
 .signin_card{
 	padding: 2%;
 	border-radius: 25px;
+		box-shadow: 0px 0px 6px 0px white;
 }
