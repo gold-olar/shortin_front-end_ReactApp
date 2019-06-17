@@ -1,16 +1,38 @@
 import React, {Component}from 'react';
 import { Card, FormGroup, Label, Input} from 'reactstrap';
 import './Signin.css'
+import Particles from 'react-particles-js';
+
+
+const particleOptions ={
+   "particles": {
+          "number": {
+              "value": 100
+          },
+          "size": {
+              "value": 1
+          }
+      },
+      "interactivity": {
+          "events": {
+              "onhover": {
+                  "enable": true,
+                  "mode": "repulse"
+              }
+          }
+      }
+}
+
+
 
 class Signin extends Component{
-	constructor(){
-		super()
+	constructor(props){
+		super(props)
 		this.state={
 			signinUsername: '',
 			signinPassword: ''
 		}
 	}
-
 	onUsernameChange = (event)=>{
 		this.setState({
 			signinUsername: event.target.value
@@ -22,7 +44,7 @@ class Signin extends Component{
 		})
 	}
 	onSigninSubmit = ()=>{
-		fetch('http://localhost:3001/signin',{
+		fetch('https://shorttin-api.herokuapp.com/signin',{
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -39,9 +61,16 @@ class Signin extends Component{
 		
 	}
   render(){
-  	const {loggedin} = this.props
+  	
   	return (
+  		<div>
+  		 <Particles 
+          className="particles"
+          params ={particleOptions}
+         />
+
 	     <div className="templateForm">
+
 	     	<Card className="signin_card">
 
 		     <div>
@@ -67,6 +96,7 @@ class Signin extends Component{
 		      </div>
 		      </Card>
 	     </div>
+	    </div>
 
     );
    }

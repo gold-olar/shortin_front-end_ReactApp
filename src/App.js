@@ -4,21 +4,8 @@ import NavigationBar from './components/Navbar/Navbar';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import Dashboard from './components/Dashboard/Dashboard';
-import Particles from 'react-particles-js';
 import unirest from 'unirest'
 
-
-const particleOptions ={
-  particles:{
-    line_linked:{
-      shadow:{
-        enable: false,
-        color: '#3CA9D1',
-        blur: 5
-      }
-    }
-  }
-}
 
 class App extends Component{
     constructor() {
@@ -27,12 +14,22 @@ class App extends Component{
         route: 'signin',
         isloggedin: false,
         long_url: '',
-        short_url: ''
+        short_url: '',
+        user:{
+          username: '',
+          links:''
+        }
       };
     }
 
     
-
+    loadUser = (user)=>{
+      this.setState({user:{
+        username: user.username,
+        links: user.links
+      }
+    })
+    }
     InputChange = (event) =>{
       this.setState({
         long_url: 'url=' +  event.target.value });
@@ -70,11 +67,7 @@ class App extends Component{
   render(){
     return(
         <div>
-          <Particles 
-          className="particles"
-          params ={particleOptions}
-         />
-          <NavigationBar 
+         <NavigationBar 
           RouteChange={this.RouteChange}
           LoginRouteChange = {this.LoginRouteChange}
           loggedinstate ={this.state.isloggedin}
@@ -90,7 +83,7 @@ class App extends Component{
                this.state.route === "signin" ? 
                 <Signin loggedin = {this.loggedin}/>
 
-                : <Register/>
+                : <Register loadUser={this.loadUser} loggedin = {this.loggedin} />
                
         
               )
