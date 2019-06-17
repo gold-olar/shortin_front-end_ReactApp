@@ -5,14 +5,14 @@ import { Button, Container, Card, Jumbotron, Form, FormGroup, Input } from 'reac
 
 
 
-const Dashboard = ({ shortin, InputChange, short_link, long_link }) => {
+const Dashboard = ({ username,links,  shortin, InputChange, short_link, long_link }) => {
 	const date = new Date().toDateString();
 	const displayed_long_link = long_link.slice(4);
 	
 	return (
 		<div>
 			<Jumbotron className='dashboard_header'>
-				<h3> Welcome Ola, you have #4 Shortined Links </h3>
+				<h3> Welcome {username}, you have #{links} Shortined Links </h3>
 
 
 				<Form name="Link Shortener">
@@ -46,7 +46,7 @@ const Dashboard = ({ shortin, InputChange, short_link, long_link }) => {
 				:
 
 				<div> 
-					<h6> You haven't Shortined anything yet Bruh!!!</h6>
+					<h6> You haven't Shortined anything yet {username}!!!</h6>
 				</div>
 			}
 

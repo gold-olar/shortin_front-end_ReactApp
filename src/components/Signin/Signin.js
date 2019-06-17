@@ -54,8 +54,12 @@ class Signin extends Component{
 		})
 		.then(response => response.json())
 		.then(data =>{
-			if (data ==='Signed In'){
+			if (data.message ==='Signed In'){
+				let user = data.user;
+				console.log(user)
+				this.props.loadUser(user);
 				this.props.loggedin(true);
+
 			}
 		})
 		

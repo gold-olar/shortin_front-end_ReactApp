@@ -17,7 +17,8 @@ class App extends Component{
         short_url: '',
         user:{
           username: '',
-          links:''
+          links:'',
+          id: ''
         }
       };
     }
@@ -26,7 +27,8 @@ class App extends Component{
     loadUser = (user)=>{
       this.setState({user:{
         username: user.username,
-        links: user.links
+        links: user.links,
+        id: user._id
       }
     })
     }
@@ -57,7 +59,22 @@ class App extends Component{
       .header("Content-Type", "application/x-www-form-urlencoded")
       .send(this.state.long_url)
       .end( (result) => {
-        this.setState({
+        fetch('https://shorttin-api.herokuapp.com/user',{
+          method: 'post',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            id: this.state.user.id
+          })
+        })
+        // .then(response => response.json())
+        // .then(uza =>{
+        //   this.setState({
+        //     user:{
+        //       links: uza.links
+        //     }
+        //   })
+        // })
+         this.setState({
           short_url : result.body.result_url
         })
                 
@@ -75,13 +92,15 @@ class App extends Component{
 
           {this.state.isloggedin === true ?
             <Dashboard 
+            username = {this.state.user.username}
+            links = {this.state.user.links}
             long_link ={this.state.long_url}
             short_link ={this.state.short_url}
             InputChange= {this.InputChange}
             shortin ={this.shortin}/>
             :(
                this.state.route === "signin" ? 
-                <Signin loggedin = {this.loggedin}/>
+                <Signin loadUser={this.loadUser} loggedin = {this.loggedin}/>
 
                 : <Register loadUser={this.loadUser} loggedin = {this.loggedin} />
                
