@@ -59,26 +59,29 @@ class App extends Component{
       .header("Content-Type", "application/x-www-form-urlencoded")
       .send(this.state.long_url)
       .end( (result) => {
-        fetch('https://shorttin-api.herokuapp.com/user',{
+        console.log(result.body.result_url)
+       fetch('https://shorttin-api.herokuap.com/addlink',{
+          method: 'post',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            username: this.state.user.username,
+            longlink: this.state.long_url,
+            shortlink: result.body.result_url
+          })
+        })
+          fetch('https://shorttin-api.herokuapp.com/user',{
           method: 'post',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
             id: this.state.user.id
           })
         })
-        // .then(response => response.json())
-        // .then(uza =>{
-        //   this.setState({
-        //     user:{
-        //       links: uza.links
-        //     }
-        //   })
-        // })
-         this.setState({
-          short_url : result.body.result_url
+        .then(response => response.json())
+        .then(data =>{
+          console.log(data)
         })
                 
-      });
+      })
     }
 
   render(){
