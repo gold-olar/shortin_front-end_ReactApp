@@ -3,7 +3,24 @@
     monospace;
     font-weight: 900;
     font-size: 120%;
+    color: #fff;
+
+}
+.logo:hover{
+	color: #fff;
 }
 .NavLink{
 	cursor: pointer;
+	font-weight: 900;
+	color: #fff !important;
+	border-bottom: 4px solid transparent;
+	transition: 0.3s;
 }
+.NavLink:hover{
+	color: #5a6268 !important;
+	/*border-bottom: 4px solid #fff;
+*/
+}
+.navbar{
+	background: black;
+	} 

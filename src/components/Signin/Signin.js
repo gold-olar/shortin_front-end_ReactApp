@@ -1,5 +1,5 @@
 import React, {Component}from 'react';
-import { Card, FormGroup, Label, Input} from 'reactstrap';
+import { Alert,Card, FormGroup, Label, Input} from 'reactstrap';
 import './Signin.css'
 import Particles from 'react-particles-js';
 
@@ -7,7 +7,7 @@ import Particles from 'react-particles-js';
 const particleOptions ={
    "particles": {
           "number": {
-              "value": 100
+              "value": 70
           },
           "size": {
               "value": 1
@@ -30,7 +30,8 @@ class Signin extends Component{
 		super(props)
 		this.state={
 			signinUsername: '',
-			signinPassword: ''
+			signinPassword: '',
+			failure_message:'f'
 		}
 	}
 	onUsernameChange = (event)=>{
@@ -44,7 +45,7 @@ class Signin extends Component{
 		})
 	}
 	onSigninSubmit = ()=>{
-		fetch('https://shorttin-api.herokuapp.com/signin',{
+		fetch('http://localhost:3002/signin',{
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -56,12 +57,18 @@ class Signin extends Component{
 		.then(data =>{
 			if (data.message ==='Signed In'){
 				let user = data.user;
-				console.log(user)
 				this.props.loadUser(user);
 				this.props.loggedin(true);
 
+			}else{
+				
+				const failure_msg = data.message
+				this.setState({
+					failure_message: failure_msg
+				})
 			}
 		})
+		 
 		
 	}
   render(){
@@ -83,6 +90,13 @@ class Signin extends Component{
 		     <div>
 			      <div name= "Sign In">
 			       <FormGroup>
+			       		{this.state.failure_message ?
+					 		<Alert color="danger">
+						        {failure_message}
+						      </Alert>
+					:
+						<div> </div>
+					}
 			          <Label for="Email">Username</Label>
 			          <Input onChange={this.onUsernameChange} type="text" name="username" id="username" placeholder="Username" />
 			        </FormGroup>
@@ -91,7 +105,7 @@ class Signin extends Component{
 			          <Input onChange={this.onPasswordChange}type="password" name="password" id="password" placeholder="Password" />
 			        </FormGroup>
 			         <FormGroup>
-			          <Input onClick ={this.onSigninSubmit} className='btn-secondary' type="submit" value="Sign in" />
+			          <Input onClick ={this.onSigninSubmit} className='btn-secondary' type="submit" value="SIGN IN" />
 			        </FormGroup>
 			       
 			       

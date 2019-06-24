@@ -6,8 +6,6 @@
 	margin-top: 3%;
 	margin-left: auto;
 	margin-right: auto;
-	
-
 }
 h2{
 	text-align: center;
@@ -31,4 +29,10 @@ label{
 	padding: 2%;
 	border-radius: 25px;
 		box-shadow: 0px 0px 6px 0px white;
+}
+@media screen and (max-width: 650px){
+	.templateForm{
+	width: 80%;
+
+	}
 }

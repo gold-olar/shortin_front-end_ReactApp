@@ -55,3 +55,8 @@ h6{
 	text-align: center;
     font-weight: 600;
 }
+.alert{
+	margin: auto;
+	width: 50%;
+	text-align: center;
+}

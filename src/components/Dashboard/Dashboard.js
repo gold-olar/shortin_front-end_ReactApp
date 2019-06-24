@@ -1,46 +1,48 @@
 import React from 'react';
 import './dashboard.css'
-import { Button, Container, Card, Jumbotron, Form, FormGroup, Input } from 'reactstrap';
+import Links from '../Links/Links'
+import { Alert,Button, Jumbotron, Form, FormGroup, Input } from 'reactstrap';
 
 
 
 
-const Dashboard = ({ username,links,  shortin, InputChange, short_link, long_link }) => {
-	const date = new Date().toDateString();
-	const displayed_long_link = long_link.slice(4);
-	
+const Dashboard = ({ allLinks, username,links,shortin, InputChange,short_link,long_link, success_message, failure_message}) => {
 	return (
 		<div>
 			<Jumbotron className='dashboard_header'>
-				<h3> Welcome {username}, you have #{links} Shortined Links </h3>
+				<h3> Welcome <b>{username}</b>, you have <b># {links}</b> Shortined Links </h3>
+
+				{success_message ?
+						  <Alert color="success">
+					        {success_message}
+					      </Alert>
+					:
+						<div> </div>
+					}
+				{failure_message ?
+					 <Alert color="danger">
+				        {failure_message}
+				      </Alert>
+					:
+						<div> </div>
+					}
 
 
 				<Form name="Link Shortener">
 					<FormGroup>
-						<Input onChange={InputChange} type="url" name="url" id="url" placeholder="Enter Long Link Here..." />
+						<Input onChange={InputChange} type="url"  placeholder="Enter Long Link Here..." />
 					</FormGroup>
 
-					<Button onClick={shortin}>Shortin </Button>
+					<Button onClick={shortin}>SHORTIN </Button>
 				</Form>
 
 			</Jumbotron>
-			{short_link.length > 1 ?
+			{short_link ?
 				<div className="links">
 					<h2>Shortined Links </h2>
 
-					<Container className="cont">
-						<Card className="cards">
-							<a className="short_link"  href={short_link} > {short_link} </a>
-							<h5 className="long_link"> {displayed_long_link} </h5>
-
-							<p className="date">
-								{date}
-			</p>
-
-						</Card>
-
-
-					</Container>
+					<Links allLinks ={allLinks}/>
+					
 
 				</div>
 				:

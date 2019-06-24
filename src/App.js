@@ -4,42 +4,54 @@ import NavigationBar from './components/Navbar/Navbar';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import Dashboard from './components/Dashboard/Dashboard';
-import unirest from 'unirest'
 
 
 class App extends Component{
     constructor() {
       super();
       this.state = {
+        allLinks: '',
         route: 'signin',
         isloggedin: false,
         long_url: '',
         short_url: '',
+        success_message:'',
+        failure_message:'',
         user:{
-          username: '',
+          username: 'admin',
           links:'',
           id: ''
         }
       };
     }
-
-    
     loadUser = (user)=>{
       this.setState({user:{
         username: user.username,
         links: user.links,
         id: user._id
       }
-    })
+    });
+    }
+    loadlinks = (links)=>{
+      this.setState({
+        allLinks: links
+      })
     }
     InputChange = (event) =>{
       this.setState({
-        long_url: 'url=' +  event.target.value });
+        long_url: event.target.value });
     }
     RouteChange = (newRoute) => {
       this.setState({
        route: newRoute,
-       isloggedin: false
+       isloggedin: false,
+       success_message: '',
+       failure_message: '',
+       user:{
+        username: '',
+        links: '',
+        id: ''
+       }
       });
     }
 
@@ -49,40 +61,49 @@ class App extends Component{
         route: ""
       });
     }
-    
-
-    
-    shortin = ()=>{    
-      // unirest.post("https://url-shortener-service.p.rapidapi.com/shorten")
-      // .header("X-RapidAPI-Host", "url-shortener-service.p.rapidapi.com")
-      // .header("X-RapidAPI-Key", "f0ddd759fbmsh5d4bf8a8fa77134p149d1cjsn1774ce8ca17d")
-      // .header("Content-Type", "application/x-www-form-urlencoded")
-      // .send(this.state.long_url)
-      // .end( (result) => {
-      //   console.log(result.body.result_url)
-       fetch('https://shorttin-api.herokuap.com/addlink',{
-          method: 'post',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            username: this.state.user.username,
-            longlink: this.state.long_url,
-            shortlink: result.body.result_url
-          })
-        })
-          fetch('https://shorttin-api.herokuapp.com/user',{
-          method: 'post',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            id: this.state.user.id
-          })
-        })
-        .then(response => response.json())
-        .then(data =>{
-          console.log(data)
-        })
-                
+    updateLinks= (username)=>{
+    return fetch('http://localhost:3002/getlinks',{
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        username: username,
+        
       })
+    })
+    .then(response=> response.json())
+    .then(links =>{
+      console.table(links)
+      this.setState({
+        allLinks : links
+      })
+    })
     }
+
+    shortin=()=>{    
+      fetch('http://localhost:3002/shortin',{
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        username: this.state.user.username,
+        longlink: this.state.long_url
+    })
+  })
+    .then(response => response.json())
+    .then(data=>{
+    const {failure_message,success_message, username,shortined_link, no_of_links} = data
+      this.setState({
+        short_url: shortined_link,
+        success_message: success_message,
+        failure_message: failure_message,
+        user:{
+          links: no_of_links,
+          username: username
+        }
+      })
+    })
+      this.updateLinks(this.state.username);
+    }
+
 
   render(){
     return(
@@ -100,10 +121,20 @@ class App extends Component{
             long_link ={this.state.long_url}
             short_link ={this.state.short_url}
             InputChange= {this.InputChange}
-            shortin ={this.shortin}/>
+            shortin ={this.shortin}
+            success_message= {this.state.success_message}
+            failure_message={this.state.failure_message}
+            allLinks = {this.state.allLinks}
+            />
             :(
                this.state.route === "signin" ? 
-                <Signin loadUser={this.loadUser} loggedin = {this.loggedin}/>
+                <Signin 
+                loadUser={this.loadUser} 
+                loggedin = {this.loggedin}
+                loadlinks  = {this.loadlinks}
+                updateLinks = {this.updateLinks}
+                />
+
 
                 : <Register loadUser={this.loadUser} loggedin = {this.loggedin} />
                

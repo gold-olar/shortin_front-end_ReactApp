@@ -30,25 +30,25 @@ class NavigationBar extends Component {
 
     return (
       <div>
-        <Navbar color="dark" dark expand="md">
+        <Navbar dark expand="md">
           <NavbarBrand className="logo" href="/">SHORTINit</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
+          <NavbarToggler className ="toggle" onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
           {
             loggedinstate === true ?
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink className="NavLink" onClick = {()=>RouteChange('signin')} >Sign Out </NavLink>
+                  <NavLink className="NavLink" onClick = {()=>RouteChange('signin')} >SIGN OUT </NavLink>
                 </NavItem>
                 
              </Nav>
              :
            <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink className="NavLink" onClick = {()=>RouteChange('register')} >Sign Up</NavLink>
+                <NavLink className="NavLink" onClick = {()=>RouteChange('register')} >SIGN UP</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className="NavLink" onClick = {()=>RouteChange('signin')} >Login</NavLink>
+                <NavLink className="NavLink" onClick = {()=>RouteChange('signin')} >LOGIN </NavLink>
               </NavItem>
           </Nav>
         }

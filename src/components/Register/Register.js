@@ -111,7 +111,7 @@ class Register extends Component{
 			        </FormGroup>
 			       
 			        <FormGroup>
-			          <Input onClick={this.OnregisterSubmit} className='btn-secondary' type="submit" value="Register" />
+			          <Input onClick={this.OnregisterSubmit} className='btn-secondary' type="submit" value="REGISTER" />
 			        </FormGroup>
 			      </div>
 		      </div>
