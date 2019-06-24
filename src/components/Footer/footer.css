@@ -1,0 +1,20 @@
+.footer_text{
+	text-align: center;
+	color: white;
+}
+.footer{
+	margin-top: 5%;
+	background: black;
+	padding: 3%;
+
+}
+.footer_link{
+	color: white;
+	text-decoration: none;
+	transition: 0.3s;
+}
+.footer_link:hover{
+	color: #333 ;
+	text-decoration: none;
+
+}

@@ -25,6 +25,15 @@ h2:after{
 label{
 	font-weight: 500px;
 }
+.btn-secondary{
+	color: white;
+	background: black !important;
+	font-weight: 900;
+}
+.btn-secondary:hover{
+	transition: 0.2s;
+	background: #333 !important;
+}
 .signin_card{
 	padding: 2%;
 	border-radius: 25px;

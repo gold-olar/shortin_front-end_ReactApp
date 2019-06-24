@@ -4,6 +4,7 @@ import NavigationBar from './components/Navbar/Navbar';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import Dashboard from './components/Dashboard/Dashboard';
+import Footer from './components/Footer/Footer';
 
 
 class App extends Component{
@@ -149,7 +150,7 @@ class App extends Component{
         
         
 
-
+          <Footer/>
         </div>
       )
   }
