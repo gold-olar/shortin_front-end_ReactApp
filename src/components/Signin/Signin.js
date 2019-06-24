@@ -31,7 +31,7 @@ class Signin extends Component{
 		this.state={
 			signinUsername: '',
 			signinPassword: '',
-			failure_message:'f'
+			failure_message:''
 		}
 	}
 	onUsernameChange = (event)=>{
@@ -45,7 +45,7 @@ class Signin extends Component{
 		})
 	}
 	onSigninSubmit = ()=>{
-		fetch('http://localhost:3002/signin',{
+		fetch('https://shorttin-api.herokuapp.com/signin',{
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -92,7 +92,7 @@ class Signin extends Component{
 			       <FormGroup>
 			       		{this.state.failure_message ?
 					 		<Alert color="danger">
-						        {failure_message}
+						        {this.state.failure_message}
 						      </Alert>
 					:
 						<div> </div>
