@@ -23,8 +23,6 @@ const particleOptions ={
       }
 }
 
-
-
 class Signin extends Component{
 	constructor(props){
 		super(props)
@@ -45,7 +43,7 @@ class Signin extends Component{
 		})
 	}
 	onSigninSubmit = ()=>{
-		fetch('https://shorttin-api.herokuapp.com/signin',{
+		fetch('http://localhost:3003/signin',{
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -68,8 +66,9 @@ class Signin extends Component{
 				})
 			}
 		})
+		const username = this.state.signinUsername;
 		 
-		
+		this.props.updateLinks(username);
 	}
   render(){
   	
@@ -98,11 +97,11 @@ class Signin extends Component{
 						<div> </div>
 					}
 			          <Label for="Email">Username</Label>
-			          <Input onChange={this.onUsernameChange} type="text" name="username" id="username" placeholder="Username" />
+			          <Input onChange={this.onUsernameChange} type="text" placeholder="Username" />
 			        </FormGroup>
 			        <FormGroup>
 			          <Label for="password">Password</Label>
-			          <Input onChange={this.onPasswordChange}type="password" name="password" id="password" placeholder="Password" />
+			          <Input onChange={this.onPasswordChange}type="password"  placeholder="Password" />
 			        </FormGroup>
 			         <FormGroup>
 			          <Input onClick ={this.onSigninSubmit} className='btn-secondary' type="submit" value="SIGN IN" />

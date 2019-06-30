@@ -19,7 +19,7 @@ class App extends Component{
         success_message:'',
         failure_message:'',
         user:{
-          username: 'admin',
+          username: '',
           links:'',
           id: ''
         }
@@ -44,6 +44,7 @@ class App extends Component{
     }
     RouteChange = (newRoute) => {
       this.setState({
+        allLinks:'',
        route: newRoute,
        isloggedin: false,
        success_message: '',
@@ -63,30 +64,34 @@ class App extends Component{
       });
     }
     updateLinks= (username)=>{
-    return fetch('https://shorttin-api.herokuapp.com/getlinks',{
+    return fetch('http://localhost:3003/getlinks',{
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        username: username,
-        
+        username: username,  
       })
     })
     .then(response=> response.json())
     .then(links =>{
-      console.table(links)
-      this.setState({
-        allLinks : links
+       this.setState({
+        allLinks : links.links,
+        user:{
+          username: username,
+          links: links.no_links
+        }
       })
     })
+
     }
 
     shortin=()=>{    
-      fetch('https://shorttin-api.herokuapp.com/shortin',{
+      fetch('http://localhost:3003/shortin',{
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         username: this.state.user.username,
-        longlink: this.state.long_url
+        longlink: this.state.long_url,
+        no_of_links: this.state.user.links
     })
   })
     .then(response => response.json())
@@ -102,7 +107,7 @@ class App extends Component{
         }
       })
     })
-      this.updateLinks(this.state.username);
+     this.updateLinks(this.state.user.username) 
     }
 
 
@@ -150,7 +155,12 @@ class App extends Component{
         
         
 
-          <Footer/>
+         {this.state.isloggedin === true ?
+           <div> </div>
+         
+           :
+              <Footer/>
+         }
         </div>
       )
   }

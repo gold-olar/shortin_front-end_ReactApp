@@ -37,10 +37,9 @@ const Dashboard = ({ allLinks, username,links,shortin, InputChange,short_link,lo
 				</Form>
 
 			</Jumbotron>
-			{short_link ?
+			{allLinks ?
 				<div className="links">
 					<h2>Shortined Links </h2>
-
 					<Links allLinks ={allLinks}/>
 					
 

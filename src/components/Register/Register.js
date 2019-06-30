@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Card,  FormGroup, Label, Input} from 'reactstrap';
+import {Alert, Card,  FormGroup, Label, Input} from 'reactstrap';
 import Particles from 'react-particles-js';
 const particleOptions ={
    "particles": {
@@ -28,7 +28,8 @@ class Register extends Component{
 			registerUsername: '',
 			registerEmail : '',
 			registerPassword: '',
-			registerConfirmPassword:''
+			registerConfirmPassword:'',
+			failure_message: ''
 
 		}
 	}
@@ -54,7 +55,7 @@ class Register extends Component{
 		})
 	}
 	OnregisterSubmit=()=>{
-	fetch('https://shorttin-api.herokuapp.com/signup',{
+	fetch('http://localhost:3003/signup',{
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -69,6 +70,11 @@ class Register extends Component{
 			if (user){
 				if(user.username){
 					this.props.loggedin(true);	
+				}else{
+					const message = user.message;
+					this.setState({
+						failure_message: message
+					})
 				}
 				this.props.loadUser(user);
 						
@@ -92,6 +98,13 @@ class Register extends Component{
 		     	<h2> Register </h2>
 		     </div>
 		     <div>
+		     {this.state.failure_message ?
+				<Alert color="danger">
+					{this.state.failure_message}
+				</Alert>
+					:
+						<div> </div>
+					}
 			      <div>
 			       <FormGroup>
 			          <Label for="Email">Username</Label>
