@@ -55,7 +55,7 @@ class Register extends Component{
 		})
 	}
 	OnregisterSubmit=()=>{
-	fetch('http://localhost:3003/signup',{
+	fetch('http://shorttin-api.herokuapp.com/signup',{
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({

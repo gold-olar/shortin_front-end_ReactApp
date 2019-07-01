@@ -64,7 +64,7 @@ class App extends Component{
       });
     }
     updateLinks= (username)=>{
-    return fetch('http://localhost:3003/getlinks',{
+    return fetch('http://shorttin-api.herokuapp.com/getlinks',{
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -85,7 +85,7 @@ class App extends Component{
     }
 
     shortin=()=>{    
-      fetch('http://localhost:3003/shortin',{
+      fetch('http://shorttin-api.herokuapp.com/shortin',{
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
