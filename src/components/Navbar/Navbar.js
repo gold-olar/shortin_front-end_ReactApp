@@ -31,7 +31,7 @@ class NavigationBar extends Component {
     return (
       <div>
         <Navbar dark expand="md">
-          <NavbarBrand className="logo" href="/">SHORTINit</NavbarBrand>
+          <NavbarBrand className="logo" href="/">SHORTIN</NavbarBrand>
           <NavbarToggler className ="toggle" onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
           {
