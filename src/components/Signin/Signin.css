@@ -10,8 +10,11 @@
 h2{
 	text-align: center;
 	padding-bottom: 10px;
-	font-weight: 800;
+	font-weight: 900;
+	font-size: 110%;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 }
+
 h2:after{
 	display: block;
 	height: 2px;
@@ -19,7 +22,7 @@ h2:after{
 	width:100px;
 	content:" ";
 	margin: 0 auto;
-	margin-top: 30px;
+	margin-top: 15px;
 	font-weight: bolder;
 }
 label{

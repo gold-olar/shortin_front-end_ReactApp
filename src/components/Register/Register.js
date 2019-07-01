@@ -95,7 +95,7 @@ class Register extends Component{
 	     	<Card className="signin_card">
 
 		     <div>
-		     	<h2> Register </h2>
+		     	<h2> REGISTER </h2>
 		     </div>
 		     <div>
 		     {this.state.failure_message ?

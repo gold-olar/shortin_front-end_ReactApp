@@ -84,7 +84,7 @@ class Signin extends Component{
 	     	<Card className="signin_card">
 
 		     <div>
-		     	<h2> Sign In </h2>
+		     	<h2> SIGN IN </h2>
 		     </div>
 		     <div>
 			      <div name= "Sign In">
