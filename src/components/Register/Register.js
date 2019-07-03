@@ -108,19 +108,19 @@ class Register extends Component{
 			      <div>
 			       <FormGroup>
 			          <Label for="Email">Username</Label>
-			          <Input onChange={this.onUsernameChange} type="text" name="username" id="username" placeholder="Username" />
+			          <Input onChange={this.onUsernameChange} type="text" name="username" id="username"  />
 			        </FormGroup>
 			        <FormGroup>
 			          <Label for="Email">Email</Label>
-			          <Input onChange={this.onEmailChange}  type="email" name="email" id="email" placeholder="Email" />
+			          <Input onChange={this.onEmailChange}  type="email" name="email" id="email"  />
 			        </FormGroup>
 			        <FormGroup>
 			          <Label for="password">Password</Label>
-			          <Input onChange={this.onPasswordChange}  type="password" name="password" id="password" placeholder="Password" />
+			          <Input onChange={this.onPasswordChange}  type="password" name="password" id="password" />
 			        </FormGroup>
 			        <FormGroup>
 			          <Label for="password2">Confirm Password</Label>
-			          <Input onChange={this.onConfirmPasswordChange}  type="password" name="password2" id="password2" placeholder="Confirm Password" />
+			          <Input onChange={this.onConfirmPasswordChange}  type="password" name="password2" id="password2"  />
 			        </FormGroup>
 			       
 			        <FormGroup>

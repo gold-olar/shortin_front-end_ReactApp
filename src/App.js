@@ -110,6 +110,9 @@ class App extends Component{
      this.updateLinks(this.state.user.username) 
     }
 
+    componentWillMount(){
+    document.title = "SHORTIN"
+  }
 
   render(){
     return(

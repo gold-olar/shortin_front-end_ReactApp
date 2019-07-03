@@ -97,11 +97,11 @@ class Signin extends Component{
 						<div> </div>
 					}
 			          <Label for="Email">Username</Label>
-			          <Input onChange={this.onUsernameChange} type="text" placeholder="Username" />
+			          <Input onChange={this.onUsernameChange} type="text" />
 			        </FormGroup>
 			        <FormGroup>
 			          <Label for="password">Password</Label>
-			          <Input onChange={this.onPasswordChange}type="password"  placeholder="Password" />
+			          <Input onChange={this.onPasswordChange}type="password"   />
 			        </FormGroup>
 			         <FormGroup>
 			          <Input onClick ={this.onSigninSubmit} className='btn-secondary' type="submit" value="SIGN IN" />
